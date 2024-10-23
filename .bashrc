@@ -136,13 +136,47 @@ ex ()
   fi
 }
 
-eval "$(fzf --bash)"
-export FZF_DEFAULT_OPTS_FILE="${HOME}/.fzfrc"
+# pip bash completion start
+_pip_completion()
+{
+    COMPREPLY=( $( COMP_WORDS="${COMP_WORDS[*]}" \
+                   COMP_CWORD=$COMP_CWORD \
+                   PIP_AUTO_COMPLETE=1 $1 2>/dev/null ) )
+}
+complete -o default -F _pip_completion pip
+# pip bash completion end
+
+# Virtualenv Manager Core [v0.1.0]
+export WORKON_HOME=${HOME}/.venv
+function kiVenv()
+{
+    local corepy
+    local cmdfile
+    corepy=${HOME}/Develops/ki_venv/core.py
+    if [ $# -eq 0 ]; then
+        ${corepy} --help
+        return
+    fi
+    cmdfile=$(mktemp ${HOME}/Develops/ki_venv/kivenv_cmd.XXXX)
+    ${corepy} --shell bash --command-file ${cmdfile} $@
+    if [ -s ${cmdfile} ]; then
+        source ${cmdfile}
+    fi
+    rm ${cmdfile}
+}
+
+if command -v fzf &> /dev/null; then
+  eval "$(fzf --bash)"
+fi
+[ -f "${HOME}/.fzfrc" ] && export FZF_DEFAULT_OPTS_FILE="${HOME}/.fzfrc"
 
 alias dgit='git --git-dir ${HOME}/.dotfiles/ --work-tree=${HOME}'
 alias dlazygit='lazygit --git-dir ${HOME}/.dotfiles/ --work-tree=${HOME}'
 
-[ -f "/home/kioz/.ghcup/env" ] && . "/home/kioz/.ghcup/env" # ghcup-env
+export RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static
 
-. "/home/kioz/.deno/env"
+[ -f "${HOME}/.ghcup/env" ] && . "${HOME}/.ghcup/env" # ghcup-env
+
+export NPM_CONFIG_REGISTRY=https://registry.npmmirror.com
+[ -f "${HOME}/.deno/env" ] && . "${HOME}/.deno/env"
 
