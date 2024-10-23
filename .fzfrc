@@ -1,0 +1,2 @@
+# Open in tmux popup if on tmux, otherwise use --height mode
+--height ~40% --layout reverse --tmux center,80%,40% 
