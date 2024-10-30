@@ -1,0 +1,2 @@
+# Open in tmux popup if on tmux, otherwise use --height mode
+--height ~40% --tmux center,80%,40% --layout reverse --preview 'if [ -f {} ] && command -v bat &> /dev/null; then bat --style=numbers --color=always --line-range :500 {}; else echo -n "No Preview Supported"; fi'
