@@ -25,7 +25,7 @@ return {
       },
       {
         '<leader>ff',
-        ":Telescope find_files<CR>",
+        ":Telescope find_files follow=true<CR>",
         desc = 'Find Files'
       },
       {

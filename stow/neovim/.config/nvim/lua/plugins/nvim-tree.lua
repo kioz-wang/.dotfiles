@@ -37,7 +37,7 @@ return {
     },
     view = {
       width = {
-        max = 45,
+        max = 35,
       },
     },
     diagnostics = {
