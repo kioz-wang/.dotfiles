@@ -10,6 +10,8 @@ return {
     opts = {
       ensure_installed = {
         "lua_ls",
+        -- "stylua",
+        -- "hyprls",
         -- "hls",
       },
     },
@@ -102,10 +104,21 @@ return {
     lazy = true,
     cmd = { "Outline", "OutlineOpen" },
     keys = { -- Example mapping to toggle outline
-      { "<leader>o", "<cmd>Outline<CR>", desc = "Toggle outline" },
+      {
+        "<leader>o",
+        function()
+          local api = require('outline')
+          if api.is_open() then
+            api.focus_toggle({})
+          else
+            api.open({ focus_outline = true })
+          end
+        end,
+        desc = "Toggle outline"
+      },
     },
     opts = {
-      -- Your setup opts here
+      -- May not be configured, but must be left blank
     },
   },
 }

@@ -9,14 +9,11 @@ return {
       '<leader>e',
       function()
         local api = require('nvim-tree.api')
-        local crtBuf = vim.api.nvim_get_current_buf()
-        local crtBufFt = vim.api.nvim_get_option_value("filetype", { buf = crtBuf })
-        if crtBufFt == "NvimTree" then
+        if api.tree.is_tree_buf() then
           api.tree.close()
+          api.tree.toggle({ focus = false })
         else
           api.tree.focus()
-          -- the same as `update_focused_file.enable = true`
-          -- api.tree.find_file({ open = true })
         end
       end,
       desc = 'Toggle file explorer smartly'
