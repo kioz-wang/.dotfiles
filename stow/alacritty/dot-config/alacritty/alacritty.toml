@@ -1,7 +1,7 @@
 # https://alacritty.org/config-alacritty.html
 
 general.import = [
-  "themes/themes/monokai_pro.toml"
+  ".themes/themes/monokai_pro.toml"
 ]
 
 [env]
