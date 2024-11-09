@@ -9,7 +9,8 @@ return {
     keys = {
       {
         -- "<leader>?",
-        "<A-?>",
+        -- "<A-?>", not work with Wayland&Hyprland
+        "<A-S-/>",
         function()
           require("which-key").show({ global = false })
         end,
