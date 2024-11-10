@@ -6,8 +6,8 @@ local map = vim.keymap.set
 
 -- Line Display
 
-map("n", "<A-z>", function()
-	vim.o.wrap = not vim.o.wrap
+map({ "n", "i" }, "<A-z>", function()
+  vim.o.wrap = not vim.o.wrap
 end, { desc = "Toggle wrap" })
 
 -- Cursor Motion
