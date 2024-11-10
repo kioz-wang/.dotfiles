@@ -303,6 +303,22 @@ noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra
 
 TODO: 在使用 yay 安装软件包时，有时会顺便安装一个后缀 debug 的包。应该是最近新加的特性，但应该可以通过把构建-安装两步分来，来解决是否还要再执行一个卸载命令的问题。
 
+### Solid state drive
+
+检查 SSD 是否支持 Trim：
+
+```shell
+lsblk --discard
+```
+
+若DISC-GRAN (discard granularity)和DISC-MAX (discard max bytes)列上的数值不为零，则表示对应设备支持TRIM。
+
+开启周期性 Trim：
+
+```shell
+systemctl --now enable fstrim.timer
+```
+
 ### python
 
 python python-pip ipython
