@@ -12,7 +12,6 @@ return {
         "lua_ls",
         -- "stylua",
         -- "hyprls",
-        -- "hls",
       },
     },
     dependencies = {

@@ -52,6 +52,7 @@ map({ "n", "v" }, "<C-Right>", "<CMD>vertical resize +2<CR>", { desc = "Increase
 -- Misc
 
 map("n", "<leader>kw", "<C-w>q", { desc = "Close the window" })
+map("n", "<leader>kW", "<CMD>bdelete<CR>", { desc = "Close the buffer" })
 map("n", "<leader>kt", "<CMD>tabclose<CR>", { desc = "Close the tab" })
 map("n", "<leader>ka", "<CMD>qa<CR>", { desc = "Quit NeoVim" })
 map("n", "<leader>w", "<CMD>w<CR>", { desc = "Save current buffer" })
