@@ -1,7 +1,0 @@
-[Match]
-Name=wlan0
-
-[Network]
-DHCP=yes
-IgnoreCarrierLoss=3s
-DNS=8.8.8.8 8.8.4.4 2001:4860:4860::8888

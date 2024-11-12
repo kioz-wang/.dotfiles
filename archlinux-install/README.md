@@ -174,7 +174,7 @@ systemctl --now enable bluetooth.service
 构建系统、版本管理等
 
 ```shell
-pacman -S base-devel cmake gdb git stow
+pacman -S base-devel gdb clang lldb cmake git stow
 ```
 
 其他构建系统：ninja meson
@@ -274,9 +274,7 @@ xdg-desktop-portal-hyprland xdg-desktop-portal-gtk
 
 ### xdg-terminal-exec-git
 
-> by yay
-
-必须安装该软件包，否则 /usr/share/applications 中`Terminal=true`的`.desktop`将无法打开。
+必须安装（使用`yay`）该软件包，否则 /usr/share/applications 中`Terminal=true`的`.desktop`将无法打开。
 
 ### 中文输入法
 
@@ -319,23 +317,31 @@ lsblk --discard
 systemctl --now enable fstrim.timer
 ```
 
-### python
+### packages
+
 
 python python-pip ipython
+python-pytest
 
-### power profile
 
 `power-profiles-daemon`
 
-### 笔记
 
 ```shell
 yay -S obsidian
 ```
 
-### 编辑器
 
 ```shell
 yay -S visual-studio-code-bin
+```
+
+
+d-spy
+
+
+```shell
+pacman -S rustup
+rustup default stable
 ```
 
