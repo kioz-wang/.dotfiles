@@ -345,3 +345,17 @@ pacman -S rustup
 rustup default stable
 ```
 
+主题配置，立即生效，无需重启应用
+
+gnome-themes-extra
+
+```shell
+gsettings get org.gnome.desktop.interface gtk-scheme
+gsettings get org.gnome.desktop.interface color-scheme
+gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark
+```
+
+遗留问题：
+
+- vscode 无法打开 fcitx 输入法
+- obsidian 中，输入法候选栏无法显示在应用窗口内，偶尔无法调出输入法
