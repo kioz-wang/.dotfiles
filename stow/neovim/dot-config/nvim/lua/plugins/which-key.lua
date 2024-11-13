@@ -1,10 +1,15 @@
-
 return {
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
     opts = {
       preset = "modern",
+      spec = {
+        { "<leader>w", proxy = "<C-w>", group = "windows" },
+        { "<leader>k", group = "killer" },
+        { "<leader>q", group = "session" },
+        { "<leader>g", group = "Git" },
+      },
     },
     keys = {
       {
@@ -20,4 +25,3 @@ return {
     },
   }
 }
-

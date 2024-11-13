@@ -12,6 +12,7 @@ return {
     lazy = true,
     opts = {
       defaults = {
+        layout_strategy = "flex",
         path_display = {
           "smart"
         },
@@ -24,8 +25,8 @@ return {
         desc = 'Telescope Select and Exec a picker'
       },
       {
-        '<leader>ff',
-        ":Telescope find_files follow=true<CR>",
+        '<leader>fo',
+        ":Telescope find_files follow=true theme=dropdown<CR>",
         desc = 'Find Files'
       },
       {
