@@ -9,7 +9,12 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 PS1='[\u@\h \W]\$ '
 
-# start::includes
+# Don't leave any of history behind.
+
+shopt -s histappend
+# TODO: there is a PROMPT_COMMAND already set, find it!
+PROMPT_COMMAND="history -n; history -a"
+HISTSIZE=1000
 
 # It is recommended to prefix all filenames in those subdirectories with
 # a two-digit number and a dash, to simplify the ordering.
@@ -48,12 +53,16 @@ if [[ -d ${ENVIRONMENT_D} ]]; then
     source_unit "${unit}"
   done; unset unit
 fi
+unset ENVIRONMENT_D
 
 if [[ -d ${COMPLETION_D} ]]; then
   for unit in ${COMPLETION_D}/*; do
     source_unit "${unit}"
   done; unset unit
 fi
+unset COMPLETION_D
 
 unset source_unit
+
+unset CONFIG_D
 
