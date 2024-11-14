@@ -350,7 +350,7 @@ rustup default stable
 gnome-themes-extra
 
 ```shell
-gsettings get org.gnome.desktop.interface gtk-scheme
+gsettings get org.gnome.desktop.interface gtk-theme
 gsettings get org.gnome.desktop.interface color-scheme
 gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark
 ```
