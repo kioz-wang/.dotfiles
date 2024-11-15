@@ -30,6 +30,7 @@ return {
 
       lspconfig.clangd.setup({
         capabilities = lsp_capa,
+        cmd = { "clangd", "--header-insertion=never" }
       })
 
       vim.filetype.add({

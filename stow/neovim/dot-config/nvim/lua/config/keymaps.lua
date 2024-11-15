@@ -58,3 +58,10 @@ map("n", "<leader>fs", "<CMD>w<CR>", { desc = "Save current buffer" })
 map("n", "<leader>fS", "<CMD>wa<CR>", { desc = "Save all buffers" })
 
 map("n", "<leader>nh", ":nohl<CR>")
+
+map({"v", "i", "n"}, "<A-i>", function ()
+  local state = not vim.lsp.inlay_hint.is_enabled()
+  vim.lsp.inlay_hint.enable(state)
+  vim.notify(string.format("Toggle InlayHint -> %q", state))
+end, { desc = "Toggle InlayHint" })
+
