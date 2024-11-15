@@ -42,7 +42,7 @@ return {
       {
         '<leader>gtd',
         ':Gitsigns toggle_deleted<CR>',
-        desc = 'Toggle git show the old version of hunks inline (local)'
+        desc = 'Toggle git deleted inline (local)'
       },
     }
   },

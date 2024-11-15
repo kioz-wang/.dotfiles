@@ -27,6 +27,8 @@ vim.g.loaded_netrwPlugin = 1
 
 require("config.lazy")
 
+vim.lsp.inlay_hint.enable()
+
 -- vim.cmd([[colorscheme tokyonight-storm]])
 vim.cmd.colorscheme "catppuccin"
 

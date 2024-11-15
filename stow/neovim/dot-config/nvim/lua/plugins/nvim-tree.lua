@@ -1,6 +1,6 @@
 return {
   "nvim-tree/nvim-tree.lua",
-  version = 'v1.7.x',
+  version = 'v1.8.x',
   dependencies = {
     "nvim-tree/nvim-web-devicons",
   },
@@ -16,7 +16,7 @@ return {
           api.tree.focus()
         end
       end,
-      desc = 'Toggle file explorer smartly'
+      desc = 'Toggle file explorer'
     },
   },
   opts = {
