@@ -319,6 +319,8 @@ systemctl --now enable fstrim.timer
 
 ### packages
 
+luarocks lua-sec
+
 
 python python-pip ipython
 python-pytest
