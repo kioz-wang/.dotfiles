@@ -68,7 +68,12 @@ return {
           })
         end,
         settings = {
-          Lua = {},
+          Lua = {
+            hint = {
+              enable = true,
+              setType = true,
+            },
+          },
         },
       })
 
