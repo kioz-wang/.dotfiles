@@ -34,7 +34,8 @@ return {
       },
     },
     keys = {
-      { '<A-T>', "<CMD>ToggleTerm direction=float<CR>", mode = {'i', 'n'}, desc = 'Toggle Term (float)' },
+      { '<A-T>',      "<CMD>ToggleTerm direction=float<CR>", mode = { 'i', 'n' },    desc = 'Toggle Term (float)' },
+      { '<leader>ft', "<CMD>TermSelect<CR>",                 desc = 'Find terminals' },
     }
   },
 }
