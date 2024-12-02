@@ -32,6 +32,13 @@ function push_path() {
     esac
 }
 
+LOCALBIN_D="${HOME}/.local/bin"
+
+if [[ ! -d "${LOCALBIN_D}" ]]; then
+  mkdir -p "${LOCALBIN_D}"
+fi
+push_path "${LOCALBIN_D}"
+
 # It is recommended to prefix all filenames in those subdirectories with
 # a two-digit number and a dash, to simplify the ordering.
 
@@ -82,6 +89,7 @@ unset -f source_unit
 
 unset CONFIG_D
 
+unset LOCALBIN_D
 unset -f push_path
 export PATH
 

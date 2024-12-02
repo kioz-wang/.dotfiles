@@ -2,6 +2,3 @@
 auto = "disable"
 registry = "https://registry.npmmirror.com"
 
-[run]
-bun = true
-
