@@ -16,6 +16,22 @@ shopt -s histappend
 PROMPT_COMMAND="history -n; history -a"
 HISTSIZE=1000
 
+# Update env PATH safety.
+
+function push_path() {
+    case ":$PATH:" in
+        *:"$1":*)
+            ;;
+        *)
+            if [[ "$2" == "append" ]]; then
+              PATH="${PATH:+$PATH:}$1"
+            else
+              PATH="$1${PATH:+:$PATH}"
+            fi
+            # echo "Info: update env PATH to {${PATH}}"
+    esac
+}
+
 # It is recommended to prefix all filenames in those subdirectories with
 # a two-digit number and a dash, to simplify the ordering.
 
@@ -62,7 +78,10 @@ if [[ -d ${COMPLETION_D} ]]; then
 fi
 unset COMPLETION_D
 
-unset source_unit
+unset -f source_unit
 
 unset CONFIG_D
+
+unset -f push_path
+export PATH
 

@@ -1,1 +1,1 @@
-export PATH=${HOME}/.bun/bin:${PATH}
+push_path "${HOME}/.bun/bin"
