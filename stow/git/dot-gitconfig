@@ -1,0 +1,7 @@
+[user]
+	name = kioz.wang
+	email = never.had@outlook.com
+[pull]
+	rebase = false
+[core]
+	quotePath = false
