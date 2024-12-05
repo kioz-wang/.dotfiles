@@ -165,12 +165,12 @@ case ${_arg_type} in
   s|select)
     _type=select
     _region="$(slurp)"
-    _command+=("-g" "${_region}")
+    _command+=("-g" "\"${_region}\"")
     ;;
   w|activewindow)
     _type="win.$(get_title_activewindow)"
     _region="$(get_region_activewindow)"
-    _command+=("-g" "${_region}")
+    _command+=("-g" "\"${_region}\"")
     ;;
   *)
     die "Error during type parsing, unknow ${_arg_type}" 1 ;;
@@ -195,7 +195,7 @@ if [[ "${_arg_dry}" == on ]]; then
   _notify_title="${_notify_title}(DEBUG)"
   echo "${_command[*]}"
 else
-  "${_command[@]}"
+  eval "${_command[@]}"
   _ret=$?
 fi
 
