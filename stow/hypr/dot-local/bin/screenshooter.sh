@@ -3,6 +3,7 @@
 # ARGBASH_SET_INDENT([  ])
 # ARG_HELP([ScreenShooter based grim&slurp])
 # ARG_VERSION([echo 1.0])
+# ARG_OPTIONAL_BOOLEAN([dry],[d],[show what to do])
 # ARG_OPTIONAL_BOOLEAN([save],[s],[save to filesystem])
 # ARG_POSITIONAL_SINGLE([type],[(P)full|Select|activeWindow],[p])
 # ARGBASH_GO()
@@ -24,7 +25,7 @@ die()
 
 begins_with_short_option()
 {
-  local first_option all_short_options='hvs'
+  local first_option all_short_options='hvds'
   first_option="${1:0:1}"
   test "$all_short_options" = "${all_short_options/$first_option/}" && return 1 || return 0
 }
@@ -33,16 +34,18 @@ begins_with_short_option()
 _positionals=()
 _arg_type="p"
 # THE DEFAULTS INITIALIZATION - OPTIONALS
+_arg_dry="off"
 _arg_save="off"
 
 
 print_help()
 {
   printf '%s\n' "ScreenShooter based grim&slurp"
-  printf 'Usage: %s [-h|--help] [-v|--version] [-s|--(no-)save] [<type>]\n' "$0"
+  printf 'Usage: %s [-h|--help] [-v|--version] [-d|--(no-)dry] [-s|--(no-)save] [<type>]\n' "$0"
   printf '\t%s\n' "<type>: (P)full|Select|activeWindow (default: 'p')"
   printf '\t%s\n' "-h, --help: Prints help"
   printf '\t%s\n' "-v, --version: Prints version"
+  printf '\t%s\n' "-d, --dry, --no-dry: show what to do (off by default)"
   printf '\t%s\n' "-s, --save, --no-save: save to filesystem (off by default)"
 }
 
@@ -69,6 +72,18 @@ parse_commandline()
       -v*)
         echo 1.0
         exit 0
+        ;;
+      -d|--no-dry|--dry)
+        _arg_dry="on"
+        test "${1:0:5}" = "--no-" && _arg_dry="off"
+        ;;
+      -d*)
+        _arg_dry="on"
+        _next="${_key##-d}"
+        if test -n "$_next" -a "$_next" != "$_key"
+        then
+          { begins_with_short_option "$_next" && shift && set -- "-d" "-${_next}" "$@"; } || die "The short option '$_key' can't be decomposed to ${_key:0:2} and -${_key:2}, because ${_key:0:2} doesn't accept value and '-${_key:2:1}' doesn't correspond to a short option."
+        fi
         ;;
       -s|--no-save|--save)
         _arg_save="on"
@@ -132,15 +147,15 @@ get_title_activewindow ()
   hyprctl -j activewindow | jq -r '.title'
 }
 
-declare -r XDG_PICTURES_D="${HOME}/Pictures"
+declare -r PICTURES_D="${XDG_PICTURES_DIR:-${HOME}/Pictures}"
 declare -r _ext="png"
 declare -r _timestamp="$(date +%Y%m%d_%H%M%S)"
-declare -r _2copy="- | wl-copy"
 
 declare _type
-declare _command="grim"
+declare -a _command=("grim")
 declare _region
 declare _outfile
+declare _notify_title="ScreenShooter"
 declare _notify_message
 
 case ${_arg_type} in
@@ -150,23 +165,23 @@ case ${_arg_type} in
   s|select)
     _type=select
     _region="$(slurp)"
-    _command="${_command} -g \"${_region}\""
+    _command+=("-g" "${_region}")
     ;;
   w|activewindow)
     _type="win.$(get_title_activewindow)"
     _region="$(get_region_activewindow)"
-    _command="${_command} -g \"${_region}\""
+    _command+=("-g" "${_region}")
     ;;
   *)
     die "Error during type parsing, unknow ${_arg_type}" 1 ;;
 esac
 
 if [[ "${_arg_save}" == on ]]; then
-  _outfile="${XDG_PICTURES_D}/ss.${_type}.${_timestamp}.${_ext}"
-  _command="${_command} ${_outfile}"
+  _outfile="${PICTURES_D}/ss.${_type}.${_timestamp}.${_ext}"
+  _command+=("${_outfile}")
   _notify_message="Saved to ${_outfile}"
 else
-  _command="${_command} ${_2copy}"
+  _command+=("-" "|" "wl-copy")
   if [[ -n "${_region}" ]]; then
     _notify_message="Copied ${_type} (${_region})"
   else
@@ -174,14 +189,20 @@ else
   fi
 fi
 
-declare -i _ret
+declare -i _ret=0
 
-${_command}
-_ret=$?
-if (( _ret == 0 )); then
-  notify-send "ScreenShooter" "${_notify_message}"
+if [[ "${_arg_dry}" == on ]]; then
+  _notify_title="${_notify_title}(DEBUG)"
+  echo "${_command[*]}"
 else
-  notify-send "ScreenShooter" "Fail to exec \{${_command}\} (${_ret})"
+  "${_command[@]}"
+  _ret=$?
+fi
+
+if (( _ret == 0 )); then
+  notify-send "${_notify_title}" "${_notify_message}"
+else
+  notify-send "${_notify_title}" "Fail to exec \{${_command[*]}\} (${_ret})"
 fi
 
 # ] <-- needed because of Argbash
