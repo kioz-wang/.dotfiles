@@ -1,15 +1,15 @@
 return {
   {
     "folke/tokyonight.nvim",
-    lazy = true,
+    -- lazy = true,
   },
   {
     "tanvirtin/monokai.nvim",
-    lazy = true,
+    -- lazy = true,
   },
   {
     "shaunsingh/nord.nvim",
-    lazy = true,
+    -- lazy = true,
   },
   {
     "catppuccin/nvim",

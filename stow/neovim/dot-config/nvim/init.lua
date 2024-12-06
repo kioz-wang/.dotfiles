@@ -30,5 +30,5 @@ require("config.lazy")
 vim.lsp.inlay_hint.enable()
 
 -- vim.cmd([[colorscheme tokyonight-storm]])
-vim.cmd.colorscheme "catppuccin"
+vim.cmd.colorscheme "monokai_soda"
 
