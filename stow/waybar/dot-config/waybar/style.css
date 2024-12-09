@@ -89,6 +89,7 @@ button:hover {
 #scratchpad,
 #power-profiles-daemon,
 #mpd {
+    background-color: #64727D;
     padding: 0 10px;
     color: #ffffff;
 }
@@ -109,7 +110,7 @@ button:hover {
 }
 
 #clock {
-    background-color: #64727D;
+    /*background-color: #64727D;*/
 }
 
 #battery {
@@ -150,7 +151,7 @@ button:hover {
 }
 
 #power-profiles-daemon.balanced {
-    background-color: #2980b9;
+    /*background-color: #2980b9;*/
     color: #ffffff;
 }
 
@@ -164,24 +165,24 @@ label:focus {
 }
 
 #cpu {
-    background-color: #2ecc71;
-    color: #000000;
+    /*background-color: #2ecc71;*/
+    /*color: #000000;*/
 }
 
 #memory {
-    background-color: #9b59b6;
+    /*background-color: #9b59b6;*/
 }
 
 #disk {
-    background-color: #964B00;
+    /*background-color: #964B00;*/
 }
 
 #backlight {
-    background-color: #90b1b1;
+    /*background-color: #90b1b1;*/
 }
 
 #network {
-    background-color: #2980b9;
+    /*background-color: #2980b9;*/
 }
 
 #network.disconnected {
@@ -189,8 +190,8 @@ label:focus {
 }
 
 #wireplumber {
-    background-color: #fff0f5;
-    color: #000000;
+    /*background-color: #fff0f5;*/
+    /*color: #000000;*/
 }
 
 #wireplumber.muted {
@@ -198,21 +199,21 @@ label:focus {
 }
 
 #custom-media {
-    background-color: #66cc99;
-    color: #2a5c45;
+    /*background-color: #66cc99;*/
+    /*color: #2a5c45;*/
     min-width: 100px;
 }
 
 #custom-media.custom-spotify {
-    background-color: #66cc99;
+    /*background-color: #66cc99;*/
 }
 
 #custom-media.custom-vlc {
-    background-color: #ffa000;
+    /*background-color: #ffa000;*/
 }
 
 #temperature {
-    background-color: #f0932b;
+    /*background-color: #f0932b;*/
 }
 
 #temperature.critical {
